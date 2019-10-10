@@ -159,6 +159,7 @@ for lhs, rhs in EXTRAS_REQUIRE.items():
             "Optional dependency `pip install .[{}]` would require `{}`"
             " to be run as root".format(lhs, rhs_cmd))
 
+
 if (not compiler or prereqs) and OPSYS in PACKAGE_MANAGER:
     print("You can install the missing dependencies by running, as root:")
     if not compiler:
