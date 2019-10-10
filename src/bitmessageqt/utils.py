@@ -29,7 +29,7 @@ def identiconize(address):
     # an address to mimic someone else's identicon.
     identiconsuffix = BMConfigParser().get('bitmessagesettings', 'identiconsuffix')
     if (identicon_lib[:len('qidenticon')] == 'qidenticon'):
-        # print identicon_lib
+        # print (identicon_lib)
         # originally by:
         # :Author:Shin Adachi <shn@glucose.jp>
         # Licesensed under FreeBSD License.
@@ -46,7 +46,7 @@ def identiconize(address):
         idcon.addPixmap(image, QtGui.QIcon.Normal, QtGui.QIcon.Off)
         return idcon
     elif identicon_lib == 'pydenticon':
-        # print identicon_lib
+        # print (identicon_lib)
         # Here you could load pydenticon.py (just put it in the "src" folder of your Bitmessage source)
         from pydenticon import Pydenticon
         # It is not included in the source, because it is licensed under GPLv3
@@ -75,7 +75,7 @@ def avatarize(address):
         # don't hash [Broadcast subscribers]
         hash = address
     # http://pyqt.sourceforge.net/Docs/PyQt4/qimagereader.html#supportedImageFormats
-    # print QImageReader.supportedImageFormats ()
+    # print (QImageReader.supportedImageFormats ())
     # QImageReader.supportedImageFormats ()
     extensions = ['PNG', 'GIF', 'JPG', 'JPEG', 'SVG', 'BMP', 'MNG', 'PBM', 'PGM', 'PPM', 'TIFF', 'XBM', 'XPM', 'TGA']
     # try to find a specific avatar
@@ -83,11 +83,11 @@ def avatarize(address):
         lower_hash = state.appdata + 'avatars/' + hash + '.' + ext.lower()
         upper_hash = state.appdata + 'avatars/' + hash + '.' + ext.upper()
         if os.path.isfile(lower_hash):
-            # print 'found avatar of ', address
+            # print ('found avatar of ', address)
             idcon.addFile(lower_hash)
             return idcon
         elif os.path.isfile(upper_hash):
-            # print 'found avatar of ', address
+            # print ('found avatar of ', address)
             idcon.addFile(upper_hash)
             return idcon
     # if we haven't found any, try to find a default avatar
