@@ -27,7 +27,7 @@ def encodeBase58(num, alphabet=ALPHABET):
     base = len(alphabet)
     while num:
         rem = num % base
-        # print 'num is:', num
+        # print ('num is:', num)
         num = num // base
         arr.append(alphabet[rem])
     arr.reverse()

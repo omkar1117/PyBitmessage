@@ -1207,7 +1207,7 @@ class MySimpleXMLRPCRequestHandler(SimpleXMLRPCRequestHandler):
         initialHash = hashlib.sha512(encryptedPayload).digest()
         trialValue, nonce = proofofwork.run(target, initialHash)
         with shared.printLock:
-            print '(For msg message via API) Found proof of work', trialValue, 'Nonce:', nonce
+            print ('(For msg message via API) Found proof of work', trialValue, 'Nonce:', nonce)
             try:
                 print(
                     'POW took', int(time.time() - powStartTime), 'seconds.',
@@ -1225,7 +1225,7 @@ class MySimpleXMLRPCRequestHandler(SimpleXMLRPCRequestHandler):
             int(time.time()) + TTL, ''
         )
         with shared.printLock:
-            print 'Broadcasting inv for msg(API disseminatePreEncryptedMsg command):', hexlify(inventoryHash)
+            print ('Broadcasting inv for msg(API disseminatePreEncryptedMsg command):', hexlify(inventoryHash))
         queues.invQueue.put((toStreamNumber, inventoryHash))
 
     def HandleTrashSentMessageByAckDAta(self, params):
@@ -1255,10 +1255,10 @@ class MySimpleXMLRPCRequestHandler(SimpleXMLRPCRequestHandler):
         target = 2 ** 64 / ((
             len(payload) + defaults.networkDefaultPayloadLengthExtraBytes + 8
         ) * defaults.networkDefaultProofOfWorkNonceTrialsPerByte)
-        print '(For pubkey message via API) Doing proof of work...'
+        print ('(For pubkey message via API) Doing proof of work...')
         initialHash = hashlib.sha512(payload).digest()
         trialValue, nonce = proofofwork.run(target, initialHash)
-        print '(For pubkey message via API) Found proof of work', trialValue, 'Nonce:', nonce
+        print ('(For pubkey message via API) Found proof of work', trialValue, 'Nonce:', nonce)
         payload = pack('>Q', nonce) + payload
 
         pubkeyReadPosition = 8  # bypass the nonce
@@ -1280,7 +1280,7 @@ class MySimpleXMLRPCRequestHandler(SimpleXMLRPCRequestHandler):
             objectType, pubkeyStreamNumber, payload, int(time.time()) + TTL, ''
         )
         with shared.printLock:
-            print 'broadcasting inv within API command disseminatePubkey with hash:', hexlify(inventoryHash)
+            print ('broadcasting inv within API command disseminatePubkey with hash:', hexlify(inventoryHash))
         queues.invQueue.put((pubkeyStreamNumber, inventoryHash))
 
     def HandleGetMessageDataByDestinationHash(self, params):
