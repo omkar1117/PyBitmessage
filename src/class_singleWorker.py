@@ -1384,7 +1384,7 @@ class singleWorker(StoppableThread):
             logger.info(
                 'making request for v4 pubkey with tag: %s', hexlify(tag))
 
-        # print 'trial value', trialValue
+        # print ('trial value', trialValue)
         statusbar = 'Doing the computations necessary to request' +\
             ' the recipient\'s public key.'
         queues.UISignalQueue.put(('updateStatusBar', statusbar))
