@@ -27,18 +27,18 @@ cur = conn.cursor()
 
 def readInbox():
     """Print each row from inbox table"""
-    print 'Printing everything in inbox table:'
+    print ('Printing everything in inbox table:')
     item = '''select * from inbox'''
     parameters = ''
     cur.execute(item, parameters)
     output = cur.fetchall()
     for row in output:
-        print row
+        print (row)
 
 
 def readSent():
     """Print each row from sent table"""
-    print 'Printing everything in Sent table:'
+    print ('Printing everything in Sent table:')
     item = '''select * from sent where folder !='trash' '''
     parameters = ''
     cur.execute(item, parameters)
@@ -53,18 +53,18 @@ def readSent():
 
 def readSubscriptions():
     """Print each row from subscriptions table"""
-    print 'Printing everything in subscriptions table:'
+    print ('Printing everything in subscriptions table:')
     item = '''select * from subscriptions'''
     parameters = ''
     cur.execute(item, parameters)
     output = cur.fetchall()
     for row in output:
-        print row
+        print (row)
 
 
 def readPubkeys():
     """Print each row from pubkeys table"""
-    print 'Printing everything in pubkeys table:'
+    print ('Printing everything in pubkeys table:')
     item = '''select address, transmitdata, time, usedpersonally from pubkeys'''
     parameters = ''
     cur.execute(item, parameters)
@@ -80,15 +80,15 @@ def readPubkeys():
 
 def readInventory():
     """Print each row from inventory table"""
-    print 'Printing everything in inventory table:'
+    print ('Printing everything in inventory table:')
     item = '''select hash, objecttype, streamnumber, payload, expirestime from inventory'''
     parameters = ''
     cur.execute(item, parameters)
     output = cur.fetchall()
     for row in output:
         obj_hash, objecttype, streamnumber, payload, expirestime = row
-        print 'Hash:', hexlify(obj_hash), objecttype, streamnumber, '\t', hexlify(payload), '\t', unicode(
-            strftime('%a, %d %b %Y  %I:%M %p', localtime(expirestime)), 'utf-8')
+        print ('Hash:', hexlify(obj_hash), objecttype, streamnumber, '\t', hexlify(payload), '\t', unicode(
+            strftime('%a, %d %b %Y  %I:%M %p', localtime(expirestime)), 'utf-8'))
 
 
 def takeInboxMessagesOutOfTrash():
@@ -98,7 +98,7 @@ def takeInboxMessagesOutOfTrash():
     cur.execute(item, parameters)
     _ = cur.fetchall()
     conn.commit()
-    print 'done'
+    print ('done')
 
 
 def takeSentMessagesOutOfTrash():
@@ -108,7 +108,7 @@ def takeSentMessagesOutOfTrash():
     cur.execute(item, parameters)
     _ = cur.fetchall()
     conn.commit()
-    print 'done'
+    print ('done')
 
 
 def markAllInboxMessagesAsUnread():
@@ -119,7 +119,7 @@ def markAllInboxMessagesAsUnread():
     _ = cur.fetchall()
     conn.commit()
     queues.UISignalQueue.put(('changedInboxUnread', None))
-    print 'done'
+    print ('done')
 
 
 def vacuum():
@@ -129,7 +129,7 @@ def vacuum():
     cur.execute(item, parameters)
     _ = cur.fetchall()
     conn.commit()
-    print 'done'
+    print ('done')
 
 
 if __name__ == '__main__':

@@ -41,6 +41,7 @@ def _loadTrustedPeer():
     state.trustedPeer = state.Peer(host, int(port))
 
 
+
 def loadConfig():
     """Load the config"""
     config = BMConfigParser()
