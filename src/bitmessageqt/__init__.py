@@ -913,7 +913,7 @@ class MyForm(settingsmixin.SMainWindow):
     def appIndicatorShowBitmessage(self):
         #if self.actionShow == None:
         #    return
-        print self.actionShow.isChecked()
+        print (self.actionShow.isChecked())
         if not self.actionShow.isChecked():
             self.hide()
             #self.setWindowState(self.windowState() & QtCore.Qt.WindowMinimized)
@@ -1662,7 +1662,7 @@ class MyForm(settingsmixin.SMainWindow):
     connected = False
 
     def setStatusIcon(self, color):
-        # print 'setting status icon color'
+        # print ('setting status icon color')
         _notifications_enabled = not BMConfigParser().getboolean(
             'bitmessagesettings', 'hidetrayconnectionnotifications')
         if color == 'red':

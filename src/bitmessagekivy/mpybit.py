@@ -389,5 +389,6 @@ class NewIdentity(Screen):
             self.manager.current = 'add_sucess'
 
 
+
 if __name__ == '__main__':
     NavigateApp().run()
