@@ -169,20 +169,20 @@ class smtpServer(StoppableThread):
         asyncore.loop(1)
 
 def signals(signal, frame):
-    print "Got signal, terminating"
+    print ("Got signal, terminating")
     for thread in threading.enumerate():
         if thread.isAlive() and isinstance(thread, StoppableThread):
             thread.stopThread()
 
 def runServer():
-    print "Running SMTPd thread"
+    print ("Running SMTPd thread")
     smtpThread = smtpServer()
     smtpThread.start()
     signal.signal(signal.SIGINT, signals)
     signal.signal(signal.SIGTERM, signals)
-    print "Processing"
+    print ("Processing")
     smtpThread.join()
-    print "The end"
+    print ("The end")
 
 if __name__ == "__main__":
     runServer()
