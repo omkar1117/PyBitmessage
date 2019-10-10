@@ -218,4 +218,4 @@ class Socks5Resolver(Socks5):
         To use this within PyBitmessage, a callback needs to be
         implemented which hasn't been done yet.
         """
-        print "Resolved %s as %s" % (self.host, self.proxy_sock_name())
+        print ("Resolved %s as %s" % (self.host, self.proxy_sock_name()))

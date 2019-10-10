@@ -112,7 +112,7 @@ class TLSDispatcher(AdvancedDispatcher):      # pylint: disable=too-many-instanc
         try:
             # during TLS handshake, and after flushing write buffer, return status of last handshake attempt
             if self.tlsStarted and not self.tlsDone and not self.write_buf:
-                # print "tls readable, %r" % (self.want_read)
+                # print ("tls readable, %r" % (self.want_read))
                 return self.want_read
             # prior to TLS handshake, receiveDataThread should emulate synchronous behaviour
             elif not self.fullyEstablished and (self.expectBytes == 0 or not self.write_buf_empty()):
@@ -178,16 +178,16 @@ class TLSDispatcher(AdvancedDispatcher):      # pylint: disable=too-many-instanc
             return False
         # Perform the handshake.
         try:
-            # print "handshaking (internal)"
+            # print ("handshaking (internal)")
             self.sslSocket.do_handshake()
         except ssl.SSLError as err:
-            # print "%s:%i: handshake fail" % (self.destination.host, self.destination.port)
+            # print ("%s:%i: handshake fail" % (self.destination.host, self.destination.port))
             self.want_read = self.want_write = False
             if err.args[0] == ssl.SSL_ERROR_WANT_READ:
-                # print "want read"
+                # print ("want read")
                 self.want_read = True
             if err.args[0] == ssl.SSL_ERROR_WANT_WRITE:
-                # print "want write"
+                # print ("want write")
                 self.want_write = True
             if not (self.want_write or self.want_read):
                 raise
