@@ -62,8 +62,8 @@ class TestCore(unittest.TestCase):
         obj1 = MsgEncode(msg_data, 1)
         obj2 = MsgEncode(msg_data, 2)
         obj3 = MsgEncode(msg_data, 3)
-        # print "1: %i 2: %i 3: %i" % (
-        # len(obj1.data), len(obj2.data), len(obj3.data))
+        # print ("1: %i 2: %i 3: %i" % (
+        # len(obj1.data), len(obj2.data), len(obj3.data)))
 
         obj1e = MsgDecode(1, obj1.data)
         # no subject in trivial encoding

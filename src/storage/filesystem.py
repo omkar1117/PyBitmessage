@@ -144,10 +144,10 @@ class FilesystemInventory(InventoryStorage):    # pylint: disable=too-many-ances
                     newInventory[streamNumber][hashId] = InventoryItem(
                         objectType, streamNumber, None, expiresTime, tag)
             except KeyError:
-                print "error loading %s" % (hexlify(hashId))
+                print ("error loading %s" % (hexlify(hashId)))
         self._inventory = newInventory
 #        for i, v in self._inventory.items():
-#            print "loaded stream: %s, %i items" % (i, len(v))
+#            print ("loaded stream: %s, %i items" % (i, len(v)))
 
     def stream_list(self):
         """Return list of streams"""
